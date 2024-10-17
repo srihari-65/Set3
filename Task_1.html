@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotate Array by K Steps</title>
+</head>
+<body>
+
+<h2>Rotate Array to the Right by K Steps</h2>
+
+<!-- Input for array of integers -->
+<label for="inputArray">Enter numbers (comma separated): </label>
+<input type="text" id="inputArray" placeholder="e.g., 1,2,3,4,5,6,7" />
+<br><br>
+
+<!-- Input for number of steps k -->
+<label for="steps">Enter value of k (non-negative): </label>
+<input type="number" id="steps" placeholder="e.g., 3" />
+<br><br>
+
+<!-- Button to trigger the function -->
+<button onclick="rotateArray()">Rotate Array</button>
+
+<!-- Result display -->
+<h3>Rotated Array:</h3>
+<p id="result"></p>
+
+<script>
+    function rotateArray() {
+        // Get the input array as a string
+        const input = document.getElementById("inputArray").value;
+
+        // Get the number of steps k
+        const k = parseInt(document.getElementById("steps").value);
+
+        // Convert the input string into an array of numbers
+        let numArray = input.split(',').map(Number);
+
+        // Check if the array is valid (not empty)
+        if (numArray.length === 0 || numArray.some(isNaN) || isNaN(k) || k < 0) {
+            document.getElementById("result").textContent = "Please enter valid numbers and a non-negative k!";
+            return;
+        }
+
+        // Calculate the effective rotation
+        const steps = k % numArray.length; // Handle cases where k is larger than array length
+
+        // Rotate the array by slicing and concatenating
+        const rotatedArray = numArray.slice(-steps).concat(numArray.slice(0, -steps));
+
+        // Display the rotated array
+        document.getElementById("result").textContent = `Rotated Array: ${rotatedArray.join(', ')}`;
+    }
+</script>
+
+</body>
+</html>

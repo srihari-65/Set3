@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Maximum Element</title>
+</head>
+<body>
+
+<h2>Find the Maximum Element in an Array</h2>
+
+<!-- Input for array of integers -->
+<label for="inputArray">Enter numbers (comma separated): </label>
+<input type="text" id="inputArray" placeholder="e.g., 3,1,4,1,5,9" />
+<br><br>
+
+<!-- Button to trigger the function -->
+<button onclick="findMax()">Find Maximum</button>
+
+<!-- Result display -->
+<h3>Result:</h3>
+<p id="result"></p>
+
+<script>
+    function findMax() {
+        // Get the input array as a string
+        const input = document.getElementById("inputArray").value;
+
+        // Convert the input string into an array of numbers
+        const numArray = input.split(',').map(Number);
+
+        // Check if the array is valid (not empty)
+        if (numArray.length === 0 || numArray.some(isNaN)) {
+            document.getElementById("result").textContent = "Please enter valid numbers!";
+            return;
+        }
+
+        // Find the maximum value using Math.max
+        const maxVal = Math.max(...numArray);
+
+        // Display the result
+        document.getElementById("result").textContent = `Maximum Element: ${maxVal}`;
+    }
+</script>
+
+</body>
+</html>
